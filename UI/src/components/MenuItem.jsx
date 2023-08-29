@@ -1,6 +1,6 @@
 import * as IconLucide from 'lucide-react'
 
-export default function MenuItem({ icon = '', text = '', color = '', background = false }) {
+export default function MenuItem({ icon = '', text = '', color = '', background = false, onClick }) {
   let IconControll = null
   if (IconLucide[icon]) {
     IconControll = IconLucide[icon].render({
@@ -8,13 +8,16 @@ export default function MenuItem({ icon = '', text = '', color = '', background 
       color,
     })
   }
-  const render = () => {
-    return (
-      <div style={{ color, background: background ? '#ebecf0' : '' }} className='icon-button'>
-        <> {IconControll}</>
-        <p>{text}</p>
-      </div>
-    )
+
+  const clickEvent = () => {
+    onClick()
   }
-  return render()
+
+  return (
+    <div onClick={clickEvent} style={{ color, background: background ? '#ebecf0' : '' }} className='icon-button'>
+      <> {IconControll}</>
+      <p>{text}</p>
+    </div>
+  )
 }
+                                                                                                                                             
