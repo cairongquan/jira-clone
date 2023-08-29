@@ -1,0 +1,22 @@
+.icon-button {
+  width: 190px;
+  height: 24px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all ease 220ms;
+  font-family: monospace;
+
+  &:hover {
+    background-color: #ebecf0;
+  }
+
+  p {
+    margin-left: 12px;
+    font-size: 14px;
+  }
+}
