@@ -1,6 +1,13 @@
 #app {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.left-box {
+  border-right: 1px solid #dfe1e6;
+}
+
+.right-box {
+  width: 100vw;
 }

@@ -20,3 +20,60 @@
     font-size: 14px;
   }
 }
+
+.input-box {
+  display: flex;
+  align-items: center;
+
+  input {
+    border: 2px solid #dfe1e6;
+    padding: 2px 4px;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    transition: all 120ms ease-in-out;
+
+    &:focus {
+      border-color: #4c9aff;
+    }
+
+    &::placeholder {
+      font-size: 14px;
+      color: #dfe1ec;
+      font-family: monospace;
+    }
+  }
+
+  .input-box-max {
+    font-size: 14px;
+    color: #5e6c84;
+    user-select: none;
+    font-weight: 600;
+    margin-left: 6px;
+    display: flex;
+    align-items: center;
+
+    & :first-child {
+      font-size: 12px;
+      transition: all 220ms ease-in-out;
+    }
+
+    .max-center {
+      margin: 0px 2px;
+    }
+  }
+}
+
+.form-item {
+  margin: 12px 0px;
+  p {
+    user-select: none;
+    color: #5e6c84;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .form-item_child {
+    margin-top: 4px;
+  }
+}

@@ -20,4 +20,3 @@ export default function MenuItem({ icon = '', text = '', color = '', background 
     </div>
   )
 }
-                                                                                                                                             
