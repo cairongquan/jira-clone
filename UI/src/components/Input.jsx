@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export default function Input(props) {
-  const { value = '', placeholder = '', max = false, width, onChange } = props
+  const { value = '', placeholder = '', max = false, width, onChange, type = "input" } = props
 
   const maxLength = Number(max)
   const [inputValue, setInputValue] = useState(value)
@@ -12,9 +12,17 @@ export default function Input(props) {
     onChange && onChange(e.target.value)
   }
 
+  const rendeDom = () => {
+    if (type === 'input') {
+      return <input style={{ width: inputWidth }} value={inputValue} onInput={inputEvent} maxLength={max && max || undefined} placeholder={placeholder} />
+    } else {
+      return <textarea style={{ width: inputWidth }} value={inputValue} onInput={inputEvent} maxLength={max && max} placeholder={placeholder}></textarea>
+    }
+  }
+
   return (
     <div className="input-box">
-      <input style={{ width: inputWidth }} value={inputValue} onInput={inputEvent} type="text" maxLength={max && max} placeholder={placeholder} />
+      <>{rendeDom()}</>
       {
         maxLength > 0 && (
           <div className="input-box-max">
