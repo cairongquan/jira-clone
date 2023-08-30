@@ -23,7 +23,7 @@
 
 .input-box {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 
   input {
     border: 2px solid #dfe1e6;
@@ -50,6 +50,7 @@
     border-radius: 4px;
     outline: none;
     font-size: 14px;
+    min-height: 26px;
 
     &:focus {
       border-color: #4c9aff;
