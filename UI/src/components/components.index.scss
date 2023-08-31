@@ -161,3 +161,21 @@
     background: transparent;
   }
 }
+
+.button-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #0052cc;
+  padding: 4px 12px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #005eeb;
+  }
+
+  &:active {
+    background-color: #004ab8;
+  }
+}
