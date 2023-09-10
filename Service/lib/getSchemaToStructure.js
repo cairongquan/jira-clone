@@ -1,3 +1,10 @@
+const typeMapper = {
+  'string': 'TEXT',
+  'boolean': 'BLOB',
+  'number': 'INTEGER',
+  'double': 'NUMERIC'
+}
+
 module.exports = function getSchemaToStructure(schema) {
   let integerCode = '',
     requiredCode = [],
@@ -5,7 +12,7 @@ module.exports = function getSchemaToStructure(schema) {
   Object.keys(schema).forEach(key => {
     const current = schema[key]
     if (isKey(current)) {
-      integerCode = key + " integer"
+      integerCode = key
       return
     }
     if (isRequire(current)) {
@@ -14,7 +21,8 @@ module.exports = function getSchemaToStructure(schema) {
       notRequiredCode.push(key)
     }
   })
-  console.log(integerCode, requiredCode, notRequiredCode)
+  if (integerCode === '') throw '缺少主键标识'
+  return `${integerCode} INTEGER PRIMARY KEY AUTOINCREMENT,${requiredCode.map(item => item + ` ${schema[item].type && typeMapper[schema[item].type]} NOT NULL`).toString()},${notRequiredCode.map(item=>item+` ${schema[item].type && typeMapper[schema[item].type]} `).toString()}`
 }
 
 

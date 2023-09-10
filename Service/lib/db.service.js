@@ -1,20 +1,41 @@
 const sqlite3 = require("sqlite3").verbose();
-const uuid = require('uuid').v1
-
 const getSchemaToStructure = require('./getSchemaToStructure')
 
 module.exports = class ProjectDbService {
   constructor(dbFilePath, tableName, schema) {
     this.db = new sqlite3.Database(dbFilePath);
     this.tableName = tableName
-    if (typeof schema !== 'object') throw 'schema is required'
-    this.schemaString = getSchemaToStructure(schema)
+    if (typeof schema !== 'object') throw 'Schema is required'
+    try {
+      this.schemaString = getSchemaToStructure(schema)
+    } catch (err) {
+      throw err
+    }
     this.overwriteDbEvents();
+    // 根据scheStructure 创建table
+    ProjectDbService.isTableAlready(this).then(resolve => {
+      if (resolve === undefined) {
+        ProjectDbService.createTable(this).then(res => {
+          console.log(res)
+        }).catch(err => {
+          throw err
+        })
+      }
+    })
+  }
+
+  static async createTable(example) {
+    return example.db.run(`CREATE TABLE ${example.tableName} (${example.schemaString})`)
+  }
+
+  static async isTableAlready(example) {
+    return example.db.get(`SELECT name FROM sqlite_master WHERE type='table' AND name='${example.tableName}'`)
   }
 
   overwriteDbEvents() {
     const run = this.db.run;
     const each = this.db.each;
+    const get = this.db.get;
     // run
     this.db.run = function (sqlValue) {
       return new Promise((resolve, reject) => {
@@ -33,6 +54,18 @@ module.exports = class ProjectDbService {
         }, (data) => {
           resolve(tempEachList)
         });
+      })
+    };
+    // get
+    this.db.get = function (sqlValue) {
+      return new Promise((resolve, reject) => {
+        get.call(this, sqlValue, (err, message) => {
+          if (err === null) {
+            resolve(message)
+          } else {
+            reject(err)
+          }
+        })
       })
     }
   }
