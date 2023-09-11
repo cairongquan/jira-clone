@@ -11,8 +11,8 @@ module.exports = class ProjectDbService {
     } catch (err) {
       throw err
     }
-    this.overwriteDbEvents();
-    // 根据scheStructure 创建table
+    ProjectDbService.overwriteDbEvents(this);
+    // 根据scheStructure 创建table 如果存在则放弃创建
     ProjectDbService.isTableAlready(this).then(resolve => {
       if (resolve === undefined) {
         ProjectDbService.createTable(this).then(res => {
@@ -32,24 +32,24 @@ module.exports = class ProjectDbService {
     return example.db.get(`SELECT name FROM sqlite_master WHERE type='table' AND name='${example.tableName}'`)
   }
 
-  overwriteDbEvents() {
-    const run = this.db.run;
-    const each = this.db.each;
-    const get = this.db.get;
+  static overwriteDbEvents(example) {
+    const run = example.db.run;
+    const each = example.db.each;
+    const get = example.db.get;
     // run
-    this.db.run = function (sqlValue) {
+    example.db.run = function (sqlValue) {
       return new Promise((resolve, reject) => {
-        run.call(this, sqlValue, (message, data) => {
+        run.call(example.db, sqlValue, (message, data) => {
           if (message === null) return resolve(data);
           reject(message);
         });
       });
     };
     // each
-    this.db.each = function (sqlValue) {
+    example.db.each = function (sqlValue) {
       const tempEachList = []
       return new Promise((resolve) => {
-        each.call(this, sqlValue, (message, data) => {
+        each.call(example.db, sqlValue, (message, data) => {
           tempEachList.push(message || data)
         }, (data) => {
           resolve(tempEachList)
@@ -57,9 +57,9 @@ module.exports = class ProjectDbService {
       })
     };
     // get
-    this.db.get = function (sqlValue) {
+    example.db.get = function (sqlValue) {
       return new Promise((resolve, reject) => {
-        get.call(this, sqlValue, (err, message) => {
+        get.call(example.db, sqlValue, (err, message) => {
           if (err === null) {
             resolve(message)
           } else {

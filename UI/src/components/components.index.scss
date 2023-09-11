@@ -179,3 +179,24 @@
     background-color: #004ab8;
   }
 }
+
+.project-header {
+  height: 58px;
+  border-bottom: 1px solid #dfe1ec;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #004ab8;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+
+  h3 {
+    margin-left: 10px;
+    font-weight: bold;
+    user-select: none;
+    color: #fff;
+  }
+}
