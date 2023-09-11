@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import Input from "@/components/Input"
 import FormItem from "@/components/FormItem"
 import Select from "@/components/Select"
@@ -17,7 +15,7 @@ function chooseProjectCoverControll({ defaultValue = '' }) {
       <ul className="w-full flex flex-wrap">
         {projectFileList.map((item, index) => {
           return (
-            <div className="w-[98px] m-[5px] rounded-[4px] cursor-pointer overflow-hidden relative" key={index}>
+            <div className="w-[94px] m-[5px] rounded-[4px] cursor-pointer overflow-hidden relative" key={index}>
               <img draggable="false" src={item} key={index}></img>
               <div style={{ display: defaultValue === item ? 'block' : 'none' }} className="w-[26px] h-[26px] rounded-[50%] absolute right-[4px] top-[4px] bg-[#0052cc] flex justify-center items-center">
                 <Check color="#fff" size={14} fontWeight={800}></Check>
