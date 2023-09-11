@@ -1,5 +1,6 @@
 import './index.scss'
 import Button from '../../components/Button'
+import Modal from '../../components/Modal'
 import { PackagePlus } from 'lucide-react'
 
 export default function projectManage() {
