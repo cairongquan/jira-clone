@@ -35,17 +35,17 @@ export default function projectManage() {
     <div className="project-manage">
       <header>
         <Button>
-          <PackagePlus size={18}></PackagePlus>
+          <PackagePlus size={14}></PackagePlus>
           <span className='ml-[6px]'>new project</span>
         </Button>
       </header>
       <Modal title='New project' icon="PackagePlus" footer={
         <div className='flex items-center justify-center w-full h-[42px]'>
           <div className='mr-[10px]'>
-            <Button><Trash2></Trash2>Clear all</Button>
+            <Button><Trash2 size={14} className='mr-[2px]'></Trash2>Clear all</Button>
           </div>
           <div>
-            <Button><Save></Save>Save</Button>
+            <Button><Save size={14} className='mr-[2px]'></Save>Save</Button>
           </div>
         </div>}>
         <form>
@@ -59,7 +59,7 @@ export default function projectManage() {
             <Select placeholder="Select Category" width="460px"></Select>
           </FormItem>
           <FormItem name="Project Description">
-            <Input max="300" type="textarea" placeholder="Input Project Description" width="460px"></Input>
+            <Input max="300" type="textarea" placeholder="Input Project Description" width="480px"></Input>
           </FormItem>
           <FormItem name="Project cover">
             <>{chooseProjectCoverControll({})}</>

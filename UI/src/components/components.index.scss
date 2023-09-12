@@ -170,6 +170,7 @@
   background-color: #0052cc;
   padding: 4px 12px;
   border-radius: 4px;
+  font-size: 14px;
 
   &:hover {
     background-color: #005eeb;
@@ -198,6 +199,7 @@
     font-weight: bold;
     user-select: none;
     color: #fff;
+    font-size: 22px;
   }
 }
 
@@ -228,7 +230,7 @@
   }
 
   .modal-mask-controll {
-    width: 540px;
+    width: 640px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -254,6 +256,7 @@
 
   .modal-content {
     padding: 10px;
+    max-height: 700px;
     overflow: hidden;
     overflow-y: auto;
     margin-bottom: 60px;
