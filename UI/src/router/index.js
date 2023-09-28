@@ -1,18 +1,18 @@
 import ProjectEditView from '@/views/ProjectEdit'
 import KanBan from '../views/KanBan'
-import projectManage from '../views/ProjectManage'
+import ProjectManage from '../views/ProjectManage'
 
 export default [{
     path: '/project/kanban',
-    component: KanBan()
+    component: KanBan
   },
   {
     path: '/project/edit',
-    component: ProjectEditView()
+    component: ProjectEditView
   },
   {
     path: '/project/manage',
-    component: projectManage(),
+    component: ProjectManage,
     isMain: true
   }
 ]

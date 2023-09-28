@@ -237,6 +237,8 @@
     transform: translate(-50%, -50%);
     background-color: #fff;
     border-radius: 4px;
+    z-index: 2001;
+    overflow: hidden;
   }
 
   .modal-title {
@@ -256,7 +258,7 @@
 
   .modal-content {
     padding: 10px;
-    max-height: 700px;
+    max-height: 530px;
     overflow: hidden;
     overflow-y: auto;
     margin-bottom: 60px;
